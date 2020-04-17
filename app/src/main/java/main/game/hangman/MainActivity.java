@@ -12,8 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        importantData = new MainModel();
 
+        importantData = new MainModel();
         importantData.set_answer("hej");    //Gör så här för att ge värden och för att ta värden från den andra klassen
 
         final Button buttonSingleplayer = findViewById(R.id.singlePlayerButton);
