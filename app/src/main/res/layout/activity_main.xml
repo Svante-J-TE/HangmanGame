@@ -14,7 +14,7 @@
         android:text="Hangman"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="160px"
+        android:textSize="70dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,48 +41,48 @@
 
             <Button
                 android:id="@+id/singlePlayerButton"
-                android:layout_width="500px"
-                android:layout_height="150px"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20px"
                 android:text="Singleplayer"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/multiPlayerButton"
-                android:layout_width="500px"
-                android:layout_height="150px"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20px"
                 android:text="Multiplayer"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/instructionsButton"
-                android:layout_width="500px"
-                android:layout_height="150px"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20px"
                 android:text="Instructions"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/wordlistButton"
-                android:layout_width="500px"
-                android:layout_height="150px"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20px"
                 android:text="Wordlist"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/optionsButton"
-                android:layout_width="500px"
-                android:layout_height="150px"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20px"
                 android:text="Options"
                 android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/shutdownButton"
-                android:layout_width="500px"
-                android:layout_height="150px"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20px"
                 android:text="Quit"
                 android:textAllCaps="false" />
