@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final Button buttonWordlist = findViewById(R.id.wordlistButton);
+        buttonWordlist.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.wordlist_main);
+            }
+        });
+
         final Button buttonOptions = findViewById(R.id.optionsButton);
         buttonOptions.setOnClickListener(new View.OnClickListener(){
             @Override

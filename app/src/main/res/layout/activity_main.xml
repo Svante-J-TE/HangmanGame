@@ -64,7 +64,7 @@
                 android:textAllCaps="false" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/wordlistButton"
                 android:layout_width="500px"
                 android:layout_height="150px"
                 android:layout_marginTop="20px"
