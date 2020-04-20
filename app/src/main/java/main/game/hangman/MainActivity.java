@@ -1,9 +1,11 @@
 package main.game.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         buttonOptions.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.options_main);
+                launchActivity();
             }
         });
 
@@ -66,5 +68,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void launchActivity() {
+        Intent intent = new Intent(this, MainOptions.class);
+        startActivity(intent);
+    }
 
 }
