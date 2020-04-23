@@ -30,6 +30,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+
             <ToggleButton
                 android:id="@+id/easyButton"
                 android:layout_width="wrap_content"

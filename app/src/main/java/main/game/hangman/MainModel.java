@@ -1,6 +1,10 @@
 package main.game.hangman;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainModel {
 
@@ -22,7 +26,23 @@ public class MainModel {
     public void set_difficulty(int _difficulty){ this._difficulty = _difficulty; }
 
 
-    private ArrayList<String> wordList = new ArrayList<String>();
+        private ArrayList<String> _wordList = new ArrayList<String>();
+
+    private void populateWords(){
+        try{
+        FileReader file = new FileReader("./wordListEng");
+        Scanner reader = new Scanner(file);
+        while (reader.hasNext()){
+            _wordList.add(reader.nextLine().trim());
+        }
+
+        }
+        catch (FileNotFoundException test){
+            System.out.println("något sket sig");
+        }
+    }
+
+
 
 
 
