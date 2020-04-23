@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private MainModel importantData;
+    private int buttonPressed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         buttonSingleplayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.singlesetup_main);
+                buttonPressed = 1;
+                launchActivity();
             }
         });
 
@@ -30,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         buttonMultiplayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.singlesetup_main);
+                buttonPressed = 2;
+                launchActivity();
             }
         });
         
@@ -38,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         buttonInstructions.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.instructions_main);
+                buttonPressed = 3;
+                launchActivity();
             }
         });
 
@@ -46,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         buttonWordlist.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.wordlist_main);
+                buttonPressed = 4;
+                launchActivity();
             }
         });
 
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         buttonOptions.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                buttonPressed = 5;
                 launchActivity();
             }
         });
@@ -68,7 +74,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchActivity() {
-        Intent intent = new Intent(this, MainOptions.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        switch(buttonPressed){
+            case 1:
+                intent = new Intent(this, MainSingleplayerSetup.class);
+                break;
+
+            case 2:
+             //   intent = new Intent(this, .class);
+                break;
+
+            case 3:
+             //   intent = new Intent(this, .class);
+                break;
+
+            case 4:
+             //  intent = new Intent(this, .class);
+                break;
+
+            case 5:
+                intent = new Intent(this, MainOptions.class);
+                break;
+        }
         startActivity(intent);
     }
 
