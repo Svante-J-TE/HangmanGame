@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.ToggleButton;
 
 public class MainSingleplayerSetup extends AppCompatActivity {
@@ -20,52 +21,27 @@ public class MainSingleplayerSetup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singleplayersetup_main);
 
-        buttonEasy = findViewById(R.id.easyButton);
+        final RadioButton buttonEasy = findViewById(R.id.easyButton);
         buttonEasy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonEasy.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean active) {
-                        if(active) {
-                            importantData.set_difficulty(1);
-                        }
-                        else { }
-                    }
-                });
+                importantData.set_difficulty(1);
             }
         });
 
-        buttonMedium = findViewById(R.id.mediumButton);
+        final RadioButton buttonMedium = findViewById(R.id.mediumButton);
         buttonMedium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonMedium.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean active) {
-                        if(active) {
-                            importantData.set_difficulty(2);
-                        }
-                        else { }
-                    }
-                });
+
             }
         });
 
-        buttonHard = findViewById(R.id.hardButton);
+        final RadioButton buttonHard = findViewById(R.id.hardButton);
         buttonHard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buttonHard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean active) {
-                        if(active) {
-                            importantData.set_difficulty(3);
-                            saker();
-                        }
-                        else { }
-                    }
-                });
+
             }
         });
 

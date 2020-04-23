@@ -31,31 +31,30 @@
             android:orientation="horizontal">
 
 
-            <ToggleButton
-                android:id="@+id/easyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Easy"
-                android:textOff="Easy"
-                android:textOn="Easy" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
 
-            <ToggleButton
-                android:id="@+id/mediumButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Medium"
-                android:textOff="Medium"
-                android:textOn="Medium" />
+                <RadioButton
+                    android:id="@+id/easyButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Easy" />
 
-            <ToggleButton
-                android:id="@+id/hardButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textOff="Hard"
-                android:textOn="Hard" />
+                <RadioButton
+                    android:id="@+id/mediumButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Medium" />
+
+                <RadioButton
+                    android:id="@+id/hardButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hard" />
+            </RadioGroup>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
