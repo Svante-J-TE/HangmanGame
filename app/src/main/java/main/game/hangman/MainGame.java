@@ -44,4 +44,12 @@ public class MainGame extends AppCompatActivity {
 
     }
 
+    private static void findCharInWord(String word, char guess){
+        for (int i = 0; i < word.toCharArray().length; i++){
+            if(word.toCharArray()[i] == guess){
+                System.out.println(guess);
+            }
+        }
+    }
+
 }
