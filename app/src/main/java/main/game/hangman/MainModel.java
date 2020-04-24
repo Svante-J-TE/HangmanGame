@@ -14,6 +14,12 @@ public class MainModel {
     public void set_answer(String _answer) { this._answer = _answer; }
 
 
+    private String _finalWord;
+
+    public String get_finalWord() { return _finalWord; }
+    public void set_finalWord(String _finalWord) { this._finalWord = _finalWord; }
+
+
     private int _volume;
 
     public int get_volume() { return _volume; }
@@ -26,25 +32,21 @@ public class MainModel {
     public void set_difficulty(int _difficulty){ this._difficulty = _difficulty; }
 
 
-        private ArrayList<String> _wordList = new ArrayList<String>();
+    private ArrayList<String> _wordList = new ArrayList<String>();
 
-    private void populateWords(){
+    public ArrayList<String> get_wordList() { return _wordList; }
+    public void set_wordList(ArrayList<String> _wordList) { this._wordList = _wordList; }
+    public void wordListCreator(){
         try{
-        FileReader file = new FileReader("./wordListEng");
-        Scanner reader = new Scanner(file);
-        while (reader.hasNext()){
-            _wordList.add(reader.nextLine().trim());
-        }
-
+            FileReader file = new FileReader("main/game/hangman/wordListEng2");
+            Scanner reader = new Scanner(file);
+            while (reader.hasNext()){
+                _wordList.add(reader.nextLine().trim());
+            }
         }
         catch (FileNotFoundException test){
-            System.out.println("något sket sig");
+            System.out.println("Something went wrong");
         }
     }
-
-
-
-
-
 
 }

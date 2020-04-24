@@ -66,23 +66,4 @@ public class MainSingleplayerSetup extends AppCompatActivity {
 
     }
 
-    private void saker (){
-
-        if(buttonEasy.isChecked()){
-            buttonMedium.setChecked(false);
-            buttonHard.setChecked(false);
-        }
-        else if(buttonMedium.isChecked()){
-            buttonEasy.setChecked(false);
-            buttonHard.setChecked(false);
-        }
-        else if(buttonHard.isChecked()){
-            buttonEasy.setChecked(false);
-            buttonMedium.setChecked(false);
-        }
-    }
-
-
-
 }
-
