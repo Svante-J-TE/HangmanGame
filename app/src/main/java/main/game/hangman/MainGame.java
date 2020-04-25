@@ -2,16 +2,11 @@ package main.game.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class MainGame extends AppCompatActivity {
 
@@ -19,6 +14,7 @@ public class MainGame extends AppCompatActivity {
     private int amountOfLetters = 0;
     private char guess = 'h';
     private static ArrayList<String> test = new ArrayList<>();
+    private boolean winOrLose;
 
     private static MainModel importantData;
     @Override
@@ -28,7 +24,6 @@ public class MainGame extends AppCompatActivity {
 
         importantData = new MainModel();
 
-
         randomizeFinalWord();
 
         finalWord = importantData.get_finalWord();
@@ -37,18 +32,10 @@ public class MainGame extends AppCompatActivity {
 
         lenghtOfWordDisplay(amountOfLetters);
 
-            //findCharInWord(finalWord, guess, amountOfLetters);
+        winOrLose = userGuessesCharInWord(finalWord, guess);
 
 
-            findCharInWord2(finalWord, guess);
-
-
-                System.out.println(test);
-
-
-
-
-
+        launchPlayerWinOrLoseActivity(winOrLose);
 
 
     }
@@ -64,22 +51,7 @@ public class MainGame extends AppCompatActivity {
 
     }
 
-    private static void findCharInWord(String word, char guess, int amountOfLetters){
-        for (int i = 0; i < word.toCharArray().length; i++){
-            if(word.toCharArray()[i] == guess){
-                for (int i2 = 0; i < amountOfLetters; i2++){
-                    if(word.toCharArray()[i2] == guess){
-                        System.out.print(i2);
-                    }
-                    else {
-                        System.out.print("_ ");
-                    }
-                }
-            }
-        }
-    }
-
-    private static void findCharInWord2(String word, char guess){
+    private static void findCharInWord(String word, char guess){
         for (int i = 0; i < word.toCharArray().length; i++){
             if(word.toCharArray()[i] == guess){
                 test.set(i, String.valueOf(guess));
@@ -100,6 +72,44 @@ public class MainGame extends AppCompatActivity {
         for (int i = 0; i < amountOfLetters; i++){
             test.add(" _ ");
         }
+    }
+
+    private static boolean userGuessesCharInWord(String finalWord, char guess){
+        int amountOfGuesses = 0;
+        boolean chancesLeft = true;
+        game:   //makes it possible to break out from while loop from a nested loop
+        while (chancesLeft) {
+
+            //user input
+
+            if(test.contains(guess)) {
+                findCharInWord(finalWord, guess);
+            }
+            else{
+                System.out.println("wrong");
+                amountOfGuesses = amountOfGuesses + 1;
+            }
+            if(test.contains(" _ ") == false){
+                break game;
+            }
+            if (amountOfGuesses == 7){
+                chancesLeft = false;
+                break game;
+            }
+        }
+
+        return chancesLeft;
+    }
+
+    private void launchPlayerWinOrLoseActivity(boolean winOrLose){
+        Intent intent = new Intent(this, MainGame.class);
+        if (winOrLose == true){
+         //   intent = new Intent(this, )
+        }
+        else{
+         //   intent = new Intent(this, )
+        }
+        startActivity(intent);
     }
 
 }
