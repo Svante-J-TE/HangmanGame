@@ -34,9 +34,7 @@ public class MainGame extends AppCompatActivity {
 
         winOrLose = userGuessesCharInWord(finalWord, guess);
 
-
         launchPlayerWinOrLoseActivity(winOrLose);
-
 
     }
 
@@ -104,10 +102,10 @@ public class MainGame extends AppCompatActivity {
     private void launchPlayerWinOrLoseActivity(boolean winOrLose){
         Intent intent = new Intent(this, MainGame.class);
         if (winOrLose == true){
-         //   intent = new Intent(this, )
+            intent = new Intent(this, MainWinPopUp.class);
         }
         else{
-         //   intent = new Intent(this, )
+            intent = new Intent(this, MainLosePopUp.class);
         }
         startActivity(intent);
     }
