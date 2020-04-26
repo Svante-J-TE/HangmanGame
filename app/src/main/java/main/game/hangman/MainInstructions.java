@@ -33,6 +33,14 @@ public class MainInstructions extends AppCompatActivity {
                 launchActivity(buttonPressed);
             }
         });
+
+        final Button buttonReturn = findViewById(R.id.returnButton);
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void launchActivity(int buttonPressed){

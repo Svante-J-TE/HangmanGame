@@ -31,6 +31,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Multiplayer" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/returnButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Go back"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

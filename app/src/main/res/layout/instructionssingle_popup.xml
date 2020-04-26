@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_height="410dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,22 +18,25 @@
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Singleplayer"
+            android:layout_height="63dp"
+            android:text="Singleplayer\n"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="50dp"
+            android:textSize="40dp"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp" />
+            tools:layout_editor_absoluteX="8dp" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="230dp"
-            android:layout_height="240dp"
-            android:text="TextView"
+            android:layout_height="300dp"
+            android:text="The players objective is to reveal the secret word.
+\n\nHe/She will take turns guessing characters from the secret word.
+\n\nIf he/she reveals the word before the man is hung, the player wins.
+\n\nBut if the player runs out of guesses the man is hung and the player loses."
             android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
