@@ -14,7 +14,7 @@ public class MainModel {
     public void set_answer(String _answer) { this._answer = _answer; }
 
 
-    private String _finalWord = "hej";
+    private String _finalWord = "heej";
 
     public String get_finalWord() { return _finalWord; }
     public void set_finalWord(String _finalWord) { this._finalWord = _finalWord; }
@@ -49,13 +49,4 @@ public class MainModel {
         }
     }
 
-    private ArrayList<String> _test = new ArrayList<>();
-
-    public ArrayList<String> get_test() {
-        return _test;
-    }
-
-    public void set_test(ArrayList<String> _test) {
-        this._test = _test;
-    }
 }

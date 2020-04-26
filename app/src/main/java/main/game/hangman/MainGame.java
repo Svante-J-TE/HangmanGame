@@ -17,10 +17,11 @@ public class MainGame extends AppCompatActivity {
 
     private String finalWord = "";
     private int amountOfLetters = 0;
-    private int amountOfGuesses;
+    private int amountOfGuesses = 0;
     private EditText charInput;
     private TextView displayWordForUser;
     private static ArrayList<String> containerForWordDisplay = new ArrayList<>();
+    private static ArrayList<String > alreadyGuessedCharacters = new ArrayList<>();
     private boolean chancesLeft = true;
     private boolean winOrLose;
 
@@ -46,18 +47,17 @@ public class MainGame extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                amountOfGuesses = userGuessesCharInWord(finalWord, charInput, displayWordForUser, amountOfLetters);
+                amountOfGuesses = userGuessesCharInWord(finalWord, charInput, displayWordForUser, amountOfLetters, amountOfGuesses, alreadyGuessedCharacters);
+
+                if(containerForWordDisplay.contains(" _ ") == false) {
+                    launchPlayerWinOrLoseActivity(chancesLeft);
+                }
+                if (amountOfGuesses == 7){
+                    chancesLeft = false;
+                    launchPlayerWinOrLoseActivity(chancesLeft);
+                }
             }
         });
-
-        if(containerForWordDisplay.contains(" _ ") == false) {
-            launchPlayerWinOrLoseActivity(chancesLeft);
-        }
-        if (amountOfGuesses == 7){
-            chancesLeft = false;
-            launchPlayerWinOrLoseActivity(chancesLeft);
-        }
-
 
     }
 
@@ -75,10 +75,13 @@ public class MainGame extends AppCompatActivity {
     private static void placeCharInWord(String word, char guess, TextView displayWordForUser, int amountOfLetters){
         for (int i = 0; i < word.toCharArray().length; i++){
             if(word.toCharArray()[i] == guess){
-                for (int j = 0; j < amountOfLetters; j++){
-                    containerForWordDisplay.set(j, Character.toString(guess));
 
+                containerForWordDisplay.set(i, Character.toString(guess));
+                displayWordForUser.setText("");
+                for(int j = 0; j < amountOfLetters; j++) {
+                    displayWordForUser.append(containerForWordDisplay.get(j));
                 }
+
             }
         }
     }
@@ -98,29 +101,39 @@ public class MainGame extends AppCompatActivity {
         }
     }
 
-    private static int userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser, int amountOfLetters){
-        int amountOfGuesses = 0;
+    private static int userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser, int amountOfLetters, int amountOfGuesses, ArrayList alreadyGuessedCharacters){
         char guess;
 
             guess = charInput.getText().toString().toCharArray()[0];
 
             if(finalWord.indexOf(guess) != -1) {
-                placeCharInWord(finalWord, guess, displayWordForUser, amountOfLetters);
+                if (alreadyGuessedCharacters.contains(guess)){
+                    //add meseage about about already guessing that char
+                }
+                else{
+                    placeCharInWord(finalWord, guess, displayWordForUser, amountOfLetters);
+                }
             }
             else{
-                System.out.println("wrong");
-                amountOfGuesses = amountOfGuesses + 1;
+                if (alreadyGuessedCharacters.contains(guess)){
+                    //add meseage about about already guessing that char
+                }
+                else {
+                    //message about wrong char + add to array of wrong chars
+                    amountOfGuesses = amountOfGuesses + 1;
+                }
             }
+        alreadyGuessedCharacters.add(guess);
         return amountOfGuesses;
     }
 
     private void launchPlayerWinOrLoseActivity(boolean winOrLose){
         Intent intent;
         if (winOrLose == true){
-            intent = new Intent(this, test.class);
+            intent = new Intent(this, MainWinPopUp.class);
         }
         else{
-            intent = new Intent(this, test2.class);
+            intent = new Intent(this, MainLosePopUp.class);
         }
         startActivity(intent);
     }

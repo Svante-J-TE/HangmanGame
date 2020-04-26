@@ -9,8 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".test2"></activity>
-        <activity android:name=".test" />
         <activity
             android:name=".PopUpInstructionsMulti"
             android:theme="@style/AppTheme.popUpThemeInstructions" />
@@ -20,10 +18,10 @@
         <activity android:name=".MainInstructions" />
         <activity
             android:name=".MainLosePopUp"
-            android:theme="@style/popUpTheme" />
+            android:theme="@style/AppTheme.popUpTheme" />
         <activity
             android:name=".MainWinPopUp"
-            android:theme="@style/popUpTheme" />
+            android:theme="@style/AppTheme.popUpTheme" />
         <activity android:name=".MainGame" />
         <activity android:name=".MainSingleplayerSetup" />
         <activity android:name=".MainOptions" />
