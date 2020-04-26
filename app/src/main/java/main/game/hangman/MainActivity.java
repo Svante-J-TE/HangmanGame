@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 3:
-             //   intent = new Intent(this, .class);
+                intent = new Intent(this, MainInstructions.class);
                 break;
 
             case 4:

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,8 +14,9 @@ public class MainGame extends AppCompatActivity {
 
     private String finalWord = "";
     private int amountOfLetters = 0;
-    private char guess = 'h';
-    private static ArrayList<String> test = new ArrayList<>();
+    private EditText charInput;
+    private TextView displayWordForUser;
+    private static ArrayList<String> containerForWordDisplay = new ArrayList<>();
     private boolean winOrLose;
 
     private static MainModel importantData;
@@ -23,6 +26,8 @@ public class MainGame extends AppCompatActivity {
         setContentView(R.layout.game_main);
 
         importantData = new MainModel();
+        charInput = (EditText) findViewById(R.id.charGuess);
+        displayWordForUser = (TextView)findViewById(R.id.finalWordDisplay);
 
         randomizeFinalWord();
 
@@ -30,9 +35,9 @@ public class MainGame extends AppCompatActivity {
 
         amountOfLetters = findCharAmountOfWord(finalWord);
 
-        lenghtOfWordDisplay(amountOfLetters);
+        lengthOfWordDisplay(amountOfLetters, displayWordForUser, containerForWordDisplay);
 
-        winOrLose = userGuessesCharInWord(finalWord, guess);
+        winOrLose = userGuessesCharInWord(finalWord, charInput, displayWordForUser);
 
         launchPlayerWinOrLoseActivity(winOrLose);
 
@@ -49,11 +54,11 @@ public class MainGame extends AppCompatActivity {
 
     }
 
-    private static void findCharInWord(String word, char guess){
+    private static void findCharInWord(String word, char guess, TextView displayWordForUser){
         for (int i = 0; i < word.toCharArray().length; i++){
             if(word.toCharArray()[i] == guess){
-                test.set(i, String.valueOf(guess));
-
+                containerForWordDisplay.set(i, String.valueOf(guess));
+                displayWordForUser.append(containerForWordDisplay.get(i));
             }
         }
     }
@@ -66,28 +71,29 @@ public class MainGame extends AppCompatActivity {
         return amountOfLetters;
     }
 
-    private static void lenghtOfWordDisplay(int amountOfLetters){
+    private static void lengthOfWordDisplay(int amountOfLetters, TextView displayWordForUser, ArrayList<String> containerForWordDisplay){
         for (int i = 0; i < amountOfLetters; i++){
-            test.add(" _ ");
+            containerForWordDisplay.add(" _ ");
+            displayWordForUser.append(containerForWordDisplay.get(i));
         }
     }
 
-    private static boolean userGuessesCharInWord(String finalWord, char guess){
+    private static boolean userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser){
         int amountOfGuesses = 0;
         boolean chancesLeft = true;
+        char guess;
         game:   //makes it possible to break out from while loop from a nested loop
         while (chancesLeft) {
+        guess = charInput.getText().toString().toCharArray()[0];
 
-            //user input
-
-            if(test.contains(guess)) {
-                findCharInWord(finalWord, guess);
+            if(containerForWordDisplay.contains(guess)) {
+                findCharInWord(finalWord, guess, displayWordForUser);
             }
             else{
                 System.out.println("wrong");
                 amountOfGuesses = amountOfGuesses + 1;
             }
-            if(test.contains(" _ ") == false){
+            if(containerForWordDisplay.contains(" _ ") == false){
                 break game;
             }
             if (amountOfGuesses == 7){

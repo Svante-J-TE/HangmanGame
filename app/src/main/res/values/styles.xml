@@ -10,5 +10,9 @@
     <style name="popUpTheme">
         <item name="android:windowIsTranslucent">true</item>
     </style>
+    <style name="AppTheme.popUpThemeInstructions">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
 
 </resources>
