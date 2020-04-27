@@ -38,7 +38,7 @@ public class MainModel {
     public void set_wordList(ArrayList<String> _wordList) { this._wordList = _wordList; }
     public void wordListCreator(){
         try{
-            FileReader file = new FileReader("main/game/hangman/wordListEng2");
+            FileReader file = new FileReader("main/game/hangman/wordListEng");
             Scanner reader = new Scanner(file);
             while (reader.hasNext()){
                 _wordList.add(reader.nextLine().trim());

@@ -21,9 +21,9 @@ public class MainGame extends AppCompatActivity {
     private EditText charInput;
     private TextView displayWordForUser;
     private static ArrayList<String> containerForWordDisplay = new ArrayList<>();
-    private static ArrayList<String > alreadyGuessedCharacters = new ArrayList<>();
-    private boolean chancesLeft = true;
-    private boolean winOrLose;
+    private static ArrayList<String> alreadyGuessedCharacters = new ArrayList<>();
+    private static ArrayList<String> wrongGuesses = new ArrayList<>();
+    private boolean chancesLeft;
 
     private static MainModel importantData;
     @Override
@@ -34,6 +34,8 @@ public class MainGame extends AppCompatActivity {
         importantData = new MainModel();
         charInput = (EditText) findViewById(R.id.charGuess);
         displayWordForUser = (TextView)findViewById(R.id.finalWordDisplay);
+
+        // importantData.wordListCreator(); //do something with difficulty in this method
 
         randomizeFinalWord();
 
@@ -47,9 +49,10 @@ public class MainGame extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                amountOfGuesses = userGuessesCharInWord(finalWord, charInput, displayWordForUser, amountOfLetters, amountOfGuesses, alreadyGuessedCharacters);
+                amountOfGuesses = userGuessesCharInWord(finalWord, charInput, displayWordForUser, amountOfLetters, amountOfGuesses, alreadyGuessedCharacters, wrongGuesses);
 
                 if(containerForWordDisplay.contains(" _ ") == false) {
+                    chancesLeft = true;
                     launchPlayerWinOrLoseActivity(chancesLeft);
                 }
                 if (amountOfGuesses == 7){
@@ -101,10 +104,16 @@ public class MainGame extends AppCompatActivity {
         }
     }
 
-    private static int userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser, int amountOfLetters, int amountOfGuesses, ArrayList alreadyGuessedCharacters){
+    private static int userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser, int amountOfLetters, int amountOfGuesses, ArrayList alreadyGuessedCharacters, ArrayList wrongGuesses){
         char guess;
 
             guess = charInput.getText().toString().toCharArray()[0];
+
+            if(!Character.toString(guess).matches("[a-zA-Z]+")){
+                //add message about you have to guess a letter and not numbers and what not
+                amountOfGuesses = amountOfGuesses;
+                return amountOfGuesses;
+            }
 
             if(finalWord.indexOf(guess) != -1) {
                 if (alreadyGuessedCharacters.contains(guess)){
@@ -120,6 +129,7 @@ public class MainGame extends AppCompatActivity {
                 }
                 else {
                     //message about wrong char + add to array of wrong chars
+                    wrongGuesses.add(guess);
                     amountOfGuesses = amountOfGuesses + 1;
                 }
             }
