@@ -37,12 +37,11 @@
             android:layout_height="wrap_content"
             android:text="Submit" />
 
-        <EditText
-            android:id="@+id/editText2"
+        <TextView
+            android:id="@+id/wrongAnswerDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Wrong guesses: a b g t r" />
+            android:text="Wrong answers: " />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
