@@ -104,7 +104,7 @@ public class MainGame extends AppCompatActivity {
         }
     }
 
-    private static int userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser, int amountOfLetters, int amountOfGuesses, ArrayList<String> alreadyGuessedCharacters, ArrayList<String> wrongGuesses, TextView displayWrongAnswers){
+    private static int userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser, int amountOfLetters, int amountOfGuesses, ArrayList alreadyGuessedCharacters, ArrayList<String> wrongGuesses, TextView displayWrongAnswers){
         char guess;
 
             guess = charInput.getText().toString().toCharArray()[0];
