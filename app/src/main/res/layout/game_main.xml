@@ -39,9 +39,9 @@
 
         <TextView
             android:id="@+id/wrongAnswerDisplay"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wrong answers: " />
+            android:text="Wrong answer:" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

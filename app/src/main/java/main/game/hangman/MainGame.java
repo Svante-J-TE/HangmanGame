@@ -16,8 +16,8 @@ public class MainGame extends AppCompatActivity {
     private String finalWord = "";
     private int amountOfLetters = 0;
     private int amountOfGuesses = 0;
-    private EditText charInput;
-    private TextView displayWordForUser;
+    private static EditText charInput;
+    private static TextView displayWordForUser;
     private static TextView displayWrongAnswers;
     private static ArrayList<String> containerForWordDisplay = new ArrayList<>();
     private static ArrayList<String> alreadyGuessedCharacters = new ArrayList<>();
@@ -49,7 +49,7 @@ public class MainGame extends AppCompatActivity {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                amountOfGuesses = userGuessesCharInWord(finalWord, charInput, displayWordForUser, amountOfLetters, amountOfGuesses, alreadyGuessedCharacters, wrongGuesses, displayWrongAnswers);
+                amountOfGuesses = userGuessesCharInWord(finalWord, amountOfLetters, amountOfGuesses, alreadyGuessedCharacters, wrongGuesses);
 
                 if(containerForWordDisplay.contains(" _ ") == false) {
                     chancesLeft = true;
@@ -75,7 +75,7 @@ public class MainGame extends AppCompatActivity {
 
     }
 
-    private static void placeCharInWord(String word, char guess, TextView displayWordForUser, int amountOfLetters){
+    private static void placeCharInWord(String word, char guess, int amountOfLetters){
         for (int i = 0; i < word.toCharArray().length; i++){
             if(word.toCharArray()[i] == guess){
 
@@ -104,15 +104,16 @@ public class MainGame extends AppCompatActivity {
         }
     }
 
-    private static int userGuessesCharInWord(String finalWord, EditText charInput, TextView displayWordForUser, int amountOfLetters, int amountOfGuesses, ArrayList alreadyGuessedCharacters, ArrayList<String> wrongGuesses, TextView displayWrongAnswers){
+    private static int userGuessesCharInWord(String finalWord, int amountOfLetters, int amountOfWrongGuesses, ArrayList<String> alreadyGuessedCharacters, ArrayList<String> wrongGuesses){
+        //TODO, change to string
         char guess;
 
             guess = charInput.getText().toString().toCharArray()[0];
 
             if(!Character.toString(guess).matches("[a-zA-Z]+")){
                 //add message about you have to guess a letter and not numbers and what not
-                amountOfGuesses = amountOfGuesses;
-                return amountOfGuesses;
+                amountOfWrongGuesses = amountOfWrongGuesses;
+                return amountOfWrongGuesses;
             }
 
             if(finalWord.indexOf(guess) != -1) {
@@ -120,7 +121,7 @@ public class MainGame extends AppCompatActivity {
                     //add meseage about about already guessing that char
                 }
                 else{
-                    placeCharInWord(finalWord, guess, displayWordForUser, amountOfLetters);
+                    placeCharInWord(finalWord, guess, amountOfLetters);
                 }
             }
             else{
@@ -129,14 +130,25 @@ public class MainGame extends AppCompatActivity {
                 }
                 else {
                     //message about wrong char + add to array of wrong chars
-                    for(int i = 0; i < amountOfGuesses; i++){
-                        displayWrongAnswers.append(wrongGuesses.get(i));
-                    }
-                    amountOfGuesses = amountOfGuesses + 1;
+                    placeInWrongDisplay(amountOfWrongGuesses, wrongGuesses, guess);
+                    alreadyGuessedCharacters.add(Character.toString(guess));
                 }
             }
-        alreadyGuessedCharacters.add(guess);
-        return amountOfGuesses;
+        return amountOfWrongGuesses;
+    }
+
+    private static int placeInWrongDisplay(int amountOfWrongGuesses, ArrayList<String> wrongGuesses, char guess){
+        wrongGuesses.add(Character.toString(guess));
+
+        displayWrongAnswers.setText(displayWrongAnswers.getText()+(" "+guess));
+
+        /*
+        for(int i = 0; i < amountOfWrongGuesses; i++){
+            displayWrongAnswers.append(wrongGuesses.get(i));
+        }
+         */
+        amountOfWrongGuesses = amountOfWrongGuesses + 1;
+        return amountOfWrongGuesses;
     }
 
     private void launchPlayerWinOrLoseActivity(boolean winOrLose){
