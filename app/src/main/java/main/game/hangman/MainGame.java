@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,6 +18,7 @@ public class MainGame extends AppCompatActivity {
     private String finalWord = "";
     private int amountOfLetters = 0;
     private int amountOfGuesses = 0;
+    private static ImageView hangmanDisplay;
     private static EditText charInput;
     private static TextView displayWordForUser;
     private static TextView displayWrongAnswers;
@@ -31,9 +34,12 @@ public class MainGame extends AppCompatActivity {
         setContentView(R.layout.game_main);
 
         importantData = new MainModel();
+        hangmanDisplay = (ImageView) findViewById(R.id.imageView);
         charInput = (EditText) findViewById(R.id.charGuess);
         displayWordForUser = (TextView)findViewById(R.id.finalWordDisplay);
         displayWrongAnswers = (TextView) findViewById(R.id.wrongAnswerDisplay);
+
+        hangmanDisplay.setImageResource(R.drawable.hangman_default);
 
         // importantData.wordListCreator(); //do something with difficulty in this method
 
@@ -55,7 +61,7 @@ public class MainGame extends AppCompatActivity {
                     chancesLeft = true;
                     launchPlayerWinOrLoseActivity(chancesLeft);
                 }
-                if (amountOfGuesses == 7){
+                if (amountOfGuesses == 11){
                     chancesLeft = false;
                     launchPlayerWinOrLoseActivity(chancesLeft);
                 }
@@ -70,7 +76,6 @@ public class MainGame extends AppCompatActivity {
             int index = random.nextInt(importantData.get_wordList().size());
             // importantData.set_finalWord(importantData.get_wordList().get(index));
             importantData.set_finalWord("hej"); //ta bort detta
-            System.out.println(importantData.get_finalWord());
         }
 
     }
@@ -109,10 +114,11 @@ public class MainGame extends AppCompatActivity {
         char guess;
 
             guess = charInput.getText().toString().toCharArray()[0];
+            guess = Character.toUpperCase(guess);
+            finalWord = finalWord.toUpperCase();
 
             if(!Character.toString(guess).matches("[a-zA-Z]+")){
                 //add message about you have to guess a letter and not numbers and what not
-                amountOfWrongGuesses = amountOfWrongGuesses;
                 return amountOfWrongGuesses;
             }
 
@@ -125,13 +131,16 @@ public class MainGame extends AppCompatActivity {
                 }
             }
             else{
-                if (alreadyGuessedCharacters.contains(guess)){
+                if (alreadyGuessedCharacters.contains(Character.toString(guess))){
                     //add meseage about about already guessing that char
+                    return amountOfWrongGuesses;
                 }
                 else {
                     //message about wrong char + add to array of wrong chars
-                    placeInWrongDisplay(amountOfWrongGuesses, wrongGuesses, guess);
-                    alreadyGuessedCharacters.add(Character.toString(guess));
+                        placeInWrongDisplay(amountOfWrongGuesses, wrongGuesses, guess);
+                        alreadyGuessedCharacters.add(Character.toString(guess));
+                        amountOfWrongGuesses = amountOfWrongGuesses + 1;
+                        displayHangman(amountOfWrongGuesses);
                 }
             }
         return amountOfWrongGuesses;
@@ -142,13 +151,45 @@ public class MainGame extends AppCompatActivity {
 
         displayWrongAnswers.setText(displayWrongAnswers.getText()+(" "+guess));
 
-        /*
-        for(int i = 0; i < amountOfWrongGuesses; i++){
-            displayWrongAnswers.append(wrongGuesses.get(i));
-        }
-         */
         amountOfWrongGuesses = amountOfWrongGuesses + 1;
         return amountOfWrongGuesses;
+    }
+
+    private static void displayHangman(int amountOfWrongGuesses){
+        if (amountOfWrongGuesses == 1){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image1);
+        }
+        if (amountOfWrongGuesses == 2){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image2);
+        }
+        if (amountOfWrongGuesses == 3){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image3);
+        }
+        if (amountOfWrongGuesses == 4){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image4);
+        }
+        if (amountOfWrongGuesses == 5){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image5);
+        }
+        if (amountOfWrongGuesses == 6){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image6);
+        }
+        if (amountOfWrongGuesses == 7){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image7);
+        }
+        if (amountOfWrongGuesses == 8){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image8);
+        }
+        if (amountOfWrongGuesses == 9){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image9);
+        }
+        if (amountOfWrongGuesses == 10){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image10);
+        }
+        if (amountOfWrongGuesses == 11){
+            hangmanDisplay.setImageResource(R.drawable.hangman_image11);
+        }
+
     }
 
     private void launchPlayerWinOrLoseActivity(boolean winOrLose){
