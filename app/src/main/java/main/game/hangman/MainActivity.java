@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * The method uses buttonPressed to determine which class is selected. Once the target class is determined
+     * the method uses the method startActivity() to open the target class
+     */
     private void launchActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         switch(buttonPressed){
