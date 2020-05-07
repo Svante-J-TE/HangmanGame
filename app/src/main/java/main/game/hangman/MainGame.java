@@ -114,6 +114,7 @@ public class MainGame extends AppCompatActivity {
         char guess;
 
             guess = charInput.getText().toString().toCharArray()[0];
+            charInput.setText("");
             guess = Character.toUpperCase(guess);
             finalWord = finalWord.toUpperCase();
 
