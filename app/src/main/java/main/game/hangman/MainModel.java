@@ -1,6 +1,5 @@
 package main.game.hangman;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class MainModel {
     public void set_answer(String _answer) { this._answer = _answer; }
 
 
-    private String _finalWord = "heej";
+    private String _finalWord = "";
 
     public String get_finalWord() { return _finalWord; }
     public void set_finalWord(String _finalWord) { this._finalWord = _finalWord; }
@@ -35,18 +34,6 @@ public class MainModel {
     private ArrayList<String> _wordList = new ArrayList<String>();
 
     public ArrayList<String> get_wordList() { return _wordList; }
-    public void set_wordList(ArrayList<String> _wordList) { this._wordList = _wordList; }
-    public void wordListCreator(){
-        try{
-            FileReader file = new FileReader("main/game/hangman/wordListEng");
-            Scanner reader = new Scanner(file);
-            while (reader.hasNext()){
-                _wordList.add(reader.nextLine().trim());
-            }
-        }
-        catch (FileNotFoundException test){
-            System.out.println("Something went wrong");
-        }
-    }
+    public void set_wordList(String word) { _wordList.add(word); }
 
 }

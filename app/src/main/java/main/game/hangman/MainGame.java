@@ -41,11 +41,11 @@ public class MainGame extends AppCompatActivity {
 
         hangmanDisplay.setImageResource(R.drawable.hangman_default);
 
-        // importantData.wordListCreator(); //do something with difficulty in this method
-
-        randomizeFinalWord();
+        //randomizeFinalWord();
 
         finalWord = importantData.get_finalWord();
+
+        finalWord = "hej";
 
         lengthOfWordDisplay(finalWord.length(), displayWordForUser, containerForWordDisplay);
 
@@ -72,12 +72,13 @@ public class MainGame extends AppCompatActivity {
      * A method used to randomize a word from a wordList
      */
     private static void randomizeFinalWord(){
-        if (importantData.get_difficulty() == 1){
+
             Random random = new Random();
             int index = random.nextInt(importantData.get_wordList().size());
-            // importantData.set_finalWord(importantData.get_wordList().get(index));
-            importantData.set_finalWord("hej"); //TODO, ta bort detta
-        }
+            importantData.set_finalWord(importantData.get_wordList().get(index));
+            System.out.println(importantData.get_finalWord());
+            //importantData.set_finalWord("hej"); //TODO, ta bort detta
+
 
     }
 

@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         importantData = new MainModel();
         importantData.set_answer("hej");    //Gör så här för att ge värden och för att ta värden från den andra klassen
+
+        wordListCreator(importantData.get_wordList());
 
         final Button buttonSingleplayer = findViewById(R.id.singlePlayerButton);
         buttonSingleplayer.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +79,19 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         });
+    }
+
+    public void wordListCreator(ArrayList<String> _wordList){
+        try{
+            FileReader file = new FileReader("raw/word_list_eng");
+            Scanner reader = new Scanner(file);
+            while (reader.hasNext()){
+                importantData.set_wordList(reader.nextLine().trim());
+            }
+        }
+        catch (FileNotFoundException test){
+            System.out.println("Something went wrong");
+        }
     }
 
     /**
