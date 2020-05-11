@@ -2,6 +2,7 @@ package main.game.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,6 @@ import java.util.Random;
 public class MainGame extends AppCompatActivity {
 
     private String finalWord = "";
-    private int amountOfLetters = 0;
     private int amountOfGuesses = 0;
     private static ImageView hangmanDisplay;
     private static EditText charInput;
@@ -47,15 +47,13 @@ public class MainGame extends AppCompatActivity {
 
         finalWord = importantData.get_finalWord();
 
-        amountOfLetters = findCharAmountOfWord(finalWord);
-
-        lengthOfWordDisplay(amountOfLetters, displayWordForUser, containerForWordDisplay);
+        lengthOfWordDisplay(finalWord.length(), displayWordForUser, containerForWordDisplay);
 
         final Button buttonSubmit = findViewById(R.id.submitButton);
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                amountOfGuesses = userGuessesCharInWord(finalWord, amountOfLetters, amountOfGuesses, alreadyGuessedCharacters, wrongGuesses);
+                amountOfGuesses = userGuessesCharInWord(finalWord, finalWord.length(), amountOfGuesses, alreadyGuessedCharacters, wrongGuesses);
 
                 if(containerForWordDisplay.contains(" _ ") == false) {
                     chancesLeft = true;
@@ -90,7 +88,7 @@ public class MainGame extends AppCompatActivity {
      * @param amountOfLetters
      */
     private static void placeCharInWord(String word, char guess, int amountOfLetters){
-        for (int i = 0; i < word.toCharArray().length; i++){
+        for (int i = 0; i < word.length(); i++){
             if(word.toCharArray()[i] == guess){
 
                 containerForWordDisplay.set(i, Character.toString(guess));
@@ -197,40 +195,43 @@ public class MainGame extends AppCompatActivity {
      * @param amountOfWrongGuesses this integer is used to track which image is supposed to be shown
      */
     private static void displayHangman(int amountOfWrongGuesses){
-        if (amountOfWrongGuesses == 1){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image1);
+        switch (amountOfWrongGuesses){
+            case 1:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image1);
+                break;
+            case 2:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image2);
+                break;
+            case 3:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image3);
+                break;
+            case 4:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image4);
+                break;
+            case 5:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image5);
+                break;
+            case 6:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image6);
+                break;
+            case 7:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image7);
+                break;
+            case 8:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image8);
+                break;
+            case 9:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image9);
+                break;
+            case 10:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image10);
+                break;
+            case 11:
+                hangmanDisplay.setImageResource(R.drawable.hangman_image11);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + amountOfWrongGuesses);
         }
-        if (amountOfWrongGuesses == 2){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image2);
-        }
-        if (amountOfWrongGuesses == 3){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image3);
-        }
-        if (amountOfWrongGuesses == 4){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image4);
-        }
-        if (amountOfWrongGuesses == 5){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image5);
-        }
-        if (amountOfWrongGuesses == 6){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image6);
-        }
-        if (amountOfWrongGuesses == 7){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image7);
-        }
-        if (amountOfWrongGuesses == 8){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image8);
-        }
-        if (amountOfWrongGuesses == 9){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image9);
-        }
-        if (amountOfWrongGuesses == 10){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image10);
-        }
-        if (amountOfWrongGuesses == 11){
-            hangmanDisplay.setImageResource(R.drawable.hangman_image11);
-        }
-
     }
 
     /**
