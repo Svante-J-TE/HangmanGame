@@ -41,11 +41,11 @@ public class MainGame extends AppCompatActivity {
 
         hangmanDisplay.setImageResource(R.drawable.hangman_default);
 
-        //randomizeFinalWord();
+
+
+        randomizeFinalWord();
 
         finalWord = importantData.get_finalWord();
-
-        finalWord = "hej";
 
         lengthOfWordDisplay(finalWord.length(), displayWordForUser, containerForWordDisplay);
 
@@ -57,10 +57,12 @@ public class MainGame extends AppCompatActivity {
 
                 if(containerForWordDisplay.contains(" _ ") == false) {
                     chancesLeft = true;
+                    clearDisplaysAndVariables();
                     launchPlayerWinOrLoseActivity(chancesLeft);
                 }
                 if (amountOfGuesses == 11){
                     chancesLeft = false;
+                    clearDisplaysAndVariables();
                     launchPlayerWinOrLoseActivity(chancesLeft);
                 }
             }
@@ -72,13 +74,25 @@ public class MainGame extends AppCompatActivity {
      * A method used to randomize a word from a wordList
      */
     private static void randomizeFinalWord(){
-
             Random random = new Random();
-            int index = random.nextInt(importantData.get_wordList().size());
-            importantData.set_finalWord(importantData.get_wordList().get(index));
-            System.out.println(importantData.get_finalWord());
-            //importantData.set_finalWord("hej"); //TODO, ta bort detta
-
+            boolean acceptableWord = false;
+            while (acceptableWord == false) {
+                int index = random.nextInt(importantData.get_wordList().size());
+                importantData.set_finalWord(importantData.get_wordList().get(index));
+                if (importantData.get_difficulty() == 1){
+                    if (importantData.get_finalWord().length() < 4){
+                        acceptableWord = true;
+                    }
+                } else if (importantData.get_difficulty() == 2){
+                    if (importantData.get_finalWord().length() < 8 && importantData.get_finalWord().length() > 3){
+                        acceptableWord = true;
+                    }
+                } else if (importantData.get_difficulty() == 3){
+                    if (importantData.get_finalWord().length() > 7){
+                        acceptableWord = true;
+                    }
+                }
+            }
 
     }
 
@@ -235,6 +249,16 @@ public class MainGame extends AppCompatActivity {
         }
     }
 
+    /**
+     * Clears all guesses both from the display and from the logistics for when the user decides to play again
+     */
+    private static void clearDisplaysAndVariables(){
+        displayWordForUser.setText("");
+        displayWrongAnswers.setText("");
+        alreadyGuessedCharacters.clear();
+        containerForWordDisplay.clear();
+        wrongGuesses.clear();
+    }
     /**
      * Method launches different activities depending on the boolean winOrLose
      * @param winOrLose If the boolean is true that means the player has won the game

@@ -23,9 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         importantData = new MainModel();
-        importantData.set_answer("hej");    //Gör så här för att ge värden och för att ta värden från den andra klassen
 
-        wordListCreator(importantData.get_wordList());
+        // wordListCreator(importantData.get_wordList());
+        importantData.set_wordList("hej");
+        importantData.set_wordList("tjo");
+        importantData.set_wordList("svante");
+        importantData.set_wordList("traktor");
+        importantData.set_wordList("kalkylator");
+        importantData.set_wordList("matematik");
 
         final Button buttonSingleplayer = findViewById(R.id.singlePlayerButton);
         buttonSingleplayer.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         startActivity(intent);
-        finishAffinity();
     }
 
 }

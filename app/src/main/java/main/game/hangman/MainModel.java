@@ -1,5 +1,7 @@
 package main.game.hangman;
 
+import android.app.Application;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -7,13 +9,7 @@ import java.util.Scanner;
 
 public class MainModel {
 
-    private String _answer;
-
-    public String get_answer() { return _answer; }
-    public void set_answer(String _answer) { this._answer = _answer; }
-
-
-    private String _finalWord = "";
+    private static String _finalWord;
 
     public String get_finalWord() { return _finalWord; }
     public void set_finalWord(String _finalWord) { this._finalWord = _finalWord; }
@@ -25,13 +21,13 @@ public class MainModel {
     public void set_volume(int _volume) { this._volume = _volume; }
 
 
-    private int _difficulty;
+    private static int _difficulty;
 
     public int get_difficulty(){ return _difficulty; }
-    public void set_difficulty(int _difficulty){ this._difficulty = _difficulty; }
+    public void set_difficulty(int difficulty){ _difficulty = difficulty; }
 
 
-    private ArrayList<String> _wordList = new ArrayList<String>();
+    private static ArrayList<String> _wordList = new ArrayList<String>();
 
     public ArrayList<String> get_wordList() { return _wordList; }
     public void set_wordList(String word) { _wordList.add(word); }
