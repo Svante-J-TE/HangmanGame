@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 4:
-             //  intent = new Intent(this, .class);
+               intent = new Intent(this, MainWordList.class);
                 break;
 
             case 5:
