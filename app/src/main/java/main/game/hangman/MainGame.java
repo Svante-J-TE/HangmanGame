@@ -22,6 +22,7 @@ public class MainGame extends AppCompatActivity {
     private static EditText charInput;
     private static TextView displayWordForUser;
     private static TextView displayWrongAnswers;
+    private static TextView displayGuessesLeft;
     private static ArrayList<String> containerForWordDisplay = new ArrayList<>();
     private static ArrayList<String> alreadyGuessedCharacters = new ArrayList<>();
     private static ArrayList<String> wrongGuesses = new ArrayList<>();
@@ -38,12 +39,12 @@ public class MainGame extends AppCompatActivity {
         charInput = (EditText) findViewById(R.id.charGuess);
         displayWordForUser = (TextView)findViewById(R.id.finalWordDisplay);
         displayWrongAnswers = (TextView) findViewById(R.id.wrongAnswerDisplay);
+        displayGuessesLeft = (TextView) findViewById(R.id.amountOfGuessesLeftDisplay);
 
         hangmanDisplay.setImageResource(R.drawable.hangman_default);
 
 
-
-        randomizeFinalWord();
+        finalWordDependOnGameMode();
 
         finalWord = importantData.get_finalWord();
 
@@ -68,6 +69,16 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void finalWordDependOnGameMode(){
+        switch (importantData.get_gameMode()){
+            case 1:
+                randomizeFinalWord();
+            break;
+            case 2:
+                //finalword is already set in MainMultiplayerSetup.java
+        }
     }
 
     /**
@@ -116,17 +127,10 @@ public class MainGame extends AppCompatActivity {
         }
     }
 
-    /**
-     * used to find the length of a word
-     * @param word the word you want to find the amount of letters for
-     * @return amountOfLetters , the number of letters is returned as an integer
-     */
-    private static int findCharAmountOfWord(String word){
-        int amountOfLetters = 0;
-        for (int i = 0; i < word.toCharArray().length; i++){
-            amountOfLetters = amountOfLetters + 1;
-        }
-        return amountOfLetters;
+    private static void placeAmountOfGuessesInDisplay(int amountOfGuesses){
+        int guessesLeft = 11 - amountOfGuesses;
+        displayGuessesLeft.setText("Amount of misstakes left: " + guessesLeft);
+
     }
 
     /**
@@ -180,10 +184,11 @@ public class MainGame extends AppCompatActivity {
                 }
                 else {
                     //TODO, message about wrong char + add to array of wrong chars
-                        placeInWrongDisplay(amountOfWrongGuesses, wrongGuesses, guess);
-                        alreadyGuessedCharacters.add(Character.toString(guess));
-                        amountOfWrongGuesses = amountOfWrongGuesses + 1;
-                        displayHangman(amountOfWrongGuesses);
+                    placeInWrongDisplay(amountOfWrongGuesses, wrongGuesses, guess);
+                    alreadyGuessedCharacters.add(Character.toString(guess));
+                    amountOfWrongGuesses = amountOfWrongGuesses + 1;
+                    placeAmountOfGuessesInDisplay(amountOfWrongGuesses);
+                    displayHangman(amountOfWrongGuesses);
                 }
             }
         return amountOfWrongGuesses;

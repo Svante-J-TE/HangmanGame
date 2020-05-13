@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -24,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
         importantData = new MainModel();
 
-        wordListCreator(importantData.get_wordList());
-        // importantData.set_wordList("hej");
+        //wordListCreator(importantData.get_wordList());
+         importantData.set_wordList("hej");
         // importantData.set_wordList("tjo");
         //importantData.set_wordList("svante");
         //importantData.set_wordList("traktor");
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 2:
-             //   intent = new Intent(this, .class);
+                intent = new Intent(this, MainMultiplayerSetup.class);
                 break;
 
             case 3:

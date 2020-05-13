@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainSingleplayerSetup">
+    tools:context=".MainMultiplayerSetup">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:id="@+id/mSetupTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Singleplayer  Setup"
+            android:text="Multiplayer setup"
             android:textAlignment="center"
             android:textSize="50dp" />
 
@@ -23,39 +23,26 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Text about what each difficulty means" />
+            android:text="Player 1, input a secret word for player 2 to guess" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
-            android:orientation="horizontal">
+            android:layout_height="129dp"
+            android:orientation="vertical">
 
-
-            <RadioGroup
+            <EditText
+                android:id="@+id/finalWordInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:ems="10"
+                android:hint="Input a word"
+                android:inputType="textPersonName" />
 
-                <RadioButton
-                    android:id="@+id/easyButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Easy" />
-
-                <RadioButton
-                    android:id="@+id/mediumButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Medium" />
-
-                <RadioButton
-                    android:id="@+id/hardButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Hard" />
-            </RadioGroup>
-
+            <Button
+                android:id="@+id/submitFinalWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit and continue" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,13 +58,7 @@
                 android:text="Go Back"
                 android:visibility="visible" />
 
-            <Button
-                android:id="@+id/confirmButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Confirm"
-                android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

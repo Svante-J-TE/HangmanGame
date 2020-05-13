@@ -24,6 +24,7 @@ public class MainSingleplayerSetup extends AppCompatActivity {
 
         importantData = new MainModel();
         importantData.set_difficulty(1);//Difficulty is set to easy by default
+        importantData.set_gameMode(1);
 
         final RadioButton buttonEasy = findViewById(R.id.easyButton);
         buttonEasy.setOnClickListener(new View.OnClickListener() {

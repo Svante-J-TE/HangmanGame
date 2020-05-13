@@ -1,24 +1,19 @@
 package main.game.hangman;
 
-import android.app.Application;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MainModel {
 
     private static String _finalWord;
 
     public String get_finalWord() { return _finalWord; }
-    public void set_finalWord(String _finalWord) { this._finalWord = _finalWord; }
+    public void set_finalWord(String finalWord) { this._finalWord = finalWord; }
 
 
-    private int _volume;
+    private static int _gameMode;
 
-    public int get_volume() { return _volume; }
-    public void set_volume(int _volume) { this._volume = _volume; }
+    public int get_gameMode() { return _gameMode; }
+    public void set_gameMode(int _gameMode) { this._gameMode = _gameMode; }
 
 
     private static int _difficulty;
