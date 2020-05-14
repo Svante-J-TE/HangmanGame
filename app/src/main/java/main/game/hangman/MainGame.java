@@ -53,6 +53,7 @@ public class MainGame extends AppCompatActivity {
 
         final Button buttonSubmit = findViewById(R.id.submitButton);
 
+
         toggleButtonUsability(buttonSubmit);
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -76,11 +77,11 @@ public class MainGame extends AppCompatActivity {
     }
 
     private void toggleButtonUsability(Button buttonSubmit){
-        if(charInput.getText().toString().length() == 0){
-            buttonSubmit.setEnabled(false);
+        if(charInput.getText().toString().length() > 0){
+            buttonSubmit.setEnabled(true);
         }
         else{
-            buttonSubmit.setEnabled(true);
+            buttonSubmit.setEnabled(false);
         }
 
     }
