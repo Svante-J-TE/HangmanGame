@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.Scanner;
 
 
@@ -23,13 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         importantData = new MainModel();
 
-        //wordListCreator(importantData.get_wordList());
-         importantData.set_wordList("hej");
-        // importantData.set_wordList("tjo");
-        //importantData.set_wordList("svante");
-        //importantData.set_wordList("traktor");
-        //importantData.set_wordList("kalkylator");
-        //importantData.set_wordList("matematik");
+        wordListCreator();
 
         final Button buttonSingleplayer = findViewById(R.id.singlePlayerButton);
         buttonSingleplayer.setOnClickListener(new View.OnClickListener() {
@@ -85,16 +77,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void wordListCreator(ArrayList<String> _wordList){
-        try{
-            FileReader file = new FileReader("resources/word_list_eng.txt");
-            Scanner reader = new Scanner(file);
-            while (reader.hasNext()){
-                importantData.set_wordList(reader.nextLine().trim());
-            }
-        }
-        catch (FileNotFoundException test){
-            System.out.println("Something went wrong");
+    /**
+     * fills wordlist from a textfile
+     */
+    public void wordListCreator(){
+        InputStream inputStream = getResources().openRawResource(R.raw.word_list_eng);
+        Scanner reader = new Scanner(inputStream);
+        while (reader.hasNext()){
+            importantData.set_wordList(reader.nextLine().trim());
         }
     }
 
