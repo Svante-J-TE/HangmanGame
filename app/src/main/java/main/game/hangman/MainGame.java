@@ -50,7 +50,11 @@ public class MainGame extends AppCompatActivity {
 
         lengthOfWordDisplay(finalWord.length(), displayWordForUser, containerForWordDisplay);
 
+
         final Button buttonSubmit = findViewById(R.id.submitButton);
+
+        toggleButtonUsability(buttonSubmit);
+
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +72,16 @@ public class MainGame extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    private void toggleButtonUsability(Button buttonSubmit){
+        if(charInput.getText().toString().length() == 0){
+            buttonSubmit.setEnabled(false);
+        }
+        else{
+            buttonSubmit.setEnabled(true);
+        }
 
     }
 
