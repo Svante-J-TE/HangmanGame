@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Input a word"
-                android:inputType="textPersonName" />
+                android:inputType="text"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
             <Button
                 android:id="@+id/submitFinalWord"
