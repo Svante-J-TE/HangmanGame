@@ -2,7 +2,6 @@ package main.game.hangman;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -53,8 +54,7 @@ public class MainGame extends AppCompatActivity {
 
         final Button buttonSubmit = findViewById(R.id.submitButton);
 
-
-        toggleButtonUsability(buttonSubmit);
+        //TODO, toggleButtonUsability(buttonSubmit);
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +181,8 @@ public class MainGame extends AppCompatActivity {
 
             if(!Character.toString(guess).matches("[a-zA-Z]+")){ //checks if the users guess is a not a letter
                 //TODO, add message about you have to guess a letter and not numbers and what not
+                //Snackbar snackbar = Snackbar.make(coordinatorLayout, "You have to guess a letter between A-Z", Snackbar.LENGTH_LONG);
+                //snackbar.show();
                 return amountOfWrongGuesses; // if its not a letter the method is ended early since anything but letters are unacceptable
             }
 

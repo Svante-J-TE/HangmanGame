@@ -14,19 +14,30 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="350dp"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/finalWordDisplay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="#FF000000"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/amountOfGuessesLeftDisplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Amount of misstakes left: 11" />
+            android:text="Amount of misstakes left: 11"
+            android:textColor="#FF000000" />
+
+        <TextView
+            android:id="@+id/wrongAnswerDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wrong answer:"
+            android:textColor="#FF000000" />
 
         <EditText
             android:id="@+id/charGuess"
@@ -43,12 +54,6 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             />
-
-        <TextView
-            android:id="@+id/wrongAnswerDisplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wrong answer:" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
