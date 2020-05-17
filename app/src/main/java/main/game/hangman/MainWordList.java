@@ -31,6 +31,9 @@ public class MainWordList extends AppCompatActivity {
         });
     }
 
+    /**
+     * populates the textView with content from the wordlist
+     */
     private void populateWordlistTextView(){
         String container;
         for (int i = 0; i < importantData.get_wordList().size(); i++){

@@ -49,10 +49,17 @@ public class MainMultiplayerSetup extends AppCompatActivity {
         });
     }
 
+    /**
+     * sets user input to the finalWord
+     */
     private void setFinalWordForMultiplayer(){
         importantData.set_finalWord(inputFinalWord.getText().toString());
     }
 
+    /**
+     * toggles the ability to use the submit button. Used to prevent guess from = null
+     * @param buttonSubmit
+     */
     private void toggleButtonUsability(final Button buttonSubmit){
         inputFinalWord.addTextChangedListener(new TextWatcher() {
             @Override

@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainMultiplayerSetup"></activity>
+        <activity android:name=".MainInvalidGuess"
+            android:theme="@style/AppTheme.popUpThemeInstructions"
+            ></activity>
+        <activity android:name=".MainMultiplayerSetup" />
         <activity android:name=".MainWordList" />
         <activity
             android:name=".PopUpInstructionsMulti"

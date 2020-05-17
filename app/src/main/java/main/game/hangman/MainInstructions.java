@@ -43,6 +43,10 @@ public class MainInstructions extends AppCompatActivity {
         });
     }
 
+    /**
+     * launches the wanted activity based on the button pressed
+     * @param buttonPressed
+     */
     private void launchActivity(int buttonPressed){
         Intent intent = new Intent(MainInstructions.this, MainInstructions.class);
         switch (buttonPressed){

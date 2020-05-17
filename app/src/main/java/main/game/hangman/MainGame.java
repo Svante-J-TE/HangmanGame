@@ -11,9 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -80,6 +77,10 @@ public class MainGame extends AppCompatActivity {
 
     }
 
+    /**
+     * toggles the ability to use the submit button. Used to prevent guess from = null
+     * @param buttonSubmit
+     */
     private void toggleButtonUsability(final Button buttonSubmit){
         charInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,6 +101,10 @@ public class MainGame extends AppCompatActivity {
 
     }
 
+    /**
+     * a method that is used to see if its multipllayer or single player. case 1 , is singleplayer
+     * case 2 , multiplayer
+     */
     private void finalWordDependOnGameMode(){
         switch (importantData.get_gameMode()){
             case 1:
@@ -156,6 +161,10 @@ public class MainGame extends AppCompatActivity {
         }
     }
 
+    /**
+     * method for showing user the amount of mistakes he/she can make before losing
+     * @param amountOfGuesses
+     */
     private static void placeAmountOfGuessesInDisplay(int amountOfGuesses){
         int guessesLeft = 11 - amountOfGuesses;
         displayGuessesLeft.setText("Amount of misstakes left: " + guessesLeft);
@@ -184,8 +193,7 @@ public class MainGame extends AppCompatActivity {
      * @param wrongGuesses used to keep track of all wrong letters guessed
      * @return amountOfWrongGuesses
      */
-    private static int userGuessesCharInWord(String finalWord, int amountOfLetters, int amountOfWrongGuesses, ArrayList<String> alreadyGuessedCharacters, ArrayList<String> wrongGuesses){
-        //TODO, change to string
+    private int userGuessesCharInWord(String finalWord, int amountOfLetters, int amountOfWrongGuesses, ArrayList<String> alreadyGuessedCharacters, ArrayList<String> wrongGuesses){
         char guess;
 
             guess = charInput.getText().toString().toCharArray()[0];
@@ -194,15 +202,13 @@ public class MainGame extends AppCompatActivity {
             finalWord = finalWord.toUpperCase();
 
             if(!Character.toString(guess).matches("[a-zA-Z]+")){ //checks if the users guess is a not a letter
-                //TODO, add message about you have to guess a letter and not numbers and what not
-                //Snackbar snackbar = Snackbar.make(coordinatorLayout, "You have to guess a letter between A-Z", Snackbar.LENGTH_LONG);
-                //snackbar.show();
+                launchInvalidGuessActivity();
                 return amountOfWrongGuesses; // if its not a letter the method is ended early since anything but letters are unacceptable
             }
 
             if(finalWord.indexOf(guess) != -1) { // checks if the guess is a part of the word, if .indexOf() returns -1 if the guess is not a part of the word
                 if (alreadyGuessedCharacters.contains(guess)){
-                    //TODO, add meseage about about already guessing that char
+                    launchInvalidGuessActivity();
                 }
                 else{
                     placeCharInWord(finalWord, guess, amountOfLetters);
@@ -210,11 +216,10 @@ public class MainGame extends AppCompatActivity {
             }
             else{
                 if (alreadyGuessedCharacters.contains(Character.toString(guess))){ //checks if character has already been guessed
-                    //TODO, add meseage about about already guessing that char
+                    launchInvalidGuessActivity();
                     return amountOfWrongGuesses;
                 }
                 else {
-                    //TODO, message about wrong char + add to array of wrong chars
                     placeInWrongDisplay(amountOfWrongGuesses, wrongGuesses, guess);
                     alreadyGuessedCharacters.add(Character.toString(guess));
                     amountOfWrongGuesses = amountOfWrongGuesses + 1;
@@ -307,6 +312,14 @@ public class MainGame extends AppCompatActivity {
         else{
             intent = new Intent(this, MainLosePopUp.class);
         }
+        startActivity(intent);
+    }
+
+    /**
+     * launches activity for invalid inputs
+     */
+    private void launchInvalidGuessActivity(){
+        Intent intent = new Intent(this, MainInvalidGuess.class);
         startActivity(intent);
     }
 
