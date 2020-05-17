@@ -72,11 +72,9 @@ public class MainActivity extends AppCompatActivity {
         buttonExit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                closeAllActivites();
+                finishAffinity();
             }
         });
-
-        closeApplication();
     }
 
     /**
@@ -118,18 +116,5 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         startActivity(intent);
-    }
-
-    private void closeAllActivites(){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("EXIT", true);
-        startActivity(intent);
-    }
-
-    private void closeApplication(){
-        if (getIntent().getBooleanExtra("EXIT", false)) {
-            finish();
-        }
     }
 }
