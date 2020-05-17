@@ -23,7 +23,9 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Text about what each difficulty means" />
+            android:text="Easy: Words shorter than 4 letters
+                            \nMedium: Words shorter than 8 letters
+                            \nHard: Words longer that 7 letters" />
 
         <LinearLayout
             android:layout_width="match_parent"
