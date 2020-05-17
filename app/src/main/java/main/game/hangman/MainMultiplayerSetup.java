@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,10 @@ public class MainMultiplayerSetup extends AppCompatActivity {
         importantData.set_gameMode(2);
 
         final Button buttonSubmit = findViewById(R.id.submitFinalWord);
+        buttonSubmit.setEnabled(false);
+
+        toggleButtonUsability(buttonSubmit);
+
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,5 +51,25 @@ public class MainMultiplayerSetup extends AppCompatActivity {
 
     private void setFinalWordForMultiplayer(){
         importantData.set_finalWord(inputFinalWord.getText().toString());
+    }
+
+    private void toggleButtonUsability(final Button buttonSubmit){
+        inputFinalWord.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                buttonSubmit.setEnabled(!inputFinalWord.getText().toString().isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 }

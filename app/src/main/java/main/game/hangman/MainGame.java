@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,36 +55,48 @@ public class MainGame extends AppCompatActivity {
 
 
         final Button buttonSubmit = findViewById(R.id.submitButton);
+        buttonSubmit.setEnabled(false);
 
-        //TODO, toggleButtonUsability(buttonSubmit);
+        toggleButtonUsability(buttonSubmit);
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 amountOfGuesses = userGuessesCharInWord(finalWord, finalWord.length(), amountOfGuesses, alreadyGuessedCharacters, wrongGuesses);
 
-                if(containerForWordDisplay.contains(" _ ") == false) {
+                if (containerForWordDisplay.contains(" _ ") == false) {
                     chancesLeft = true;
                     clearDisplaysAndVariables();
                     launchPlayerWinOrLoseActivity(chancesLeft);
                 }
-                if (amountOfGuesses == 11){
+                if (amountOfGuesses == 11) {
                     chancesLeft = false;
                     clearDisplaysAndVariables();
                     launchPlayerWinOrLoseActivity(chancesLeft);
                 }
+
             }
         });
 
     }
 
-    private void toggleButtonUsability(Button buttonSubmit){
-        if(charInput.getText().toString().length() > 0){
-            buttonSubmit.setEnabled(true);
-        }
-        else{
-            buttonSubmit.setEnabled(false);
-        }
+    private void toggleButtonUsability(final Button buttonSubmit){
+        charInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                buttonSubmit.setEnabled(!charInput.getText().toString().isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
     }
 
@@ -276,7 +290,7 @@ public class MainGame extends AppCompatActivity {
      */
     private static void clearDisplaysAndVariables(){
         displayWordForUser.setText("");
-        displayWrongAnswers.setText("");
+        displayWrongAnswers.setText("Wrong answers: ");
         alreadyGuessedCharacters.clear();
         containerForWordDisplay.clear();
         wrongGuesses.clear();
